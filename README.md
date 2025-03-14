@@ -5,19 +5,15 @@
 
 [![npm][npm-image]][npm-url]
 
-An SDK for building applications on top of Raydium.
+An SDK for building applications on top of Gravex.
 
 ## Usage Guide
 
 ### Installation
 
 ```
-$ yarn add @raydium-io/raydium-sdk-v2
+$ yarn add @gravity-io/gravex-sdk-v2
 ```
-
-## SDK method Demo
-
-[SDK V2 Demo Repo](https://github.com/raydium-io/raydium-sdk-V2-demo)
 
 ## SDK local test
 
@@ -32,8 +28,8 @@ e.g. yarn dev test/init.ts
 ### Initialization
 
 ```javascript
-import { Raydium } from "@raydium-io/raydium-sdk";
-const raydium = await Raydium.load({
+import { Gravex } from "@gravex-io/gravex-sdk";
+const gravex = await gravex.load({
   connection,
   owner, // key pair or publicKey, if you run a node process, provide keyPair
   signAllTransactions, // optional - provide sign functions provided by @solana/wallet-adapter-react
@@ -46,7 +42,7 @@ const raydium = await Raydium.load({
 #### how to transform token account data
 
 ```javascript
-import { parseTokenAccountResp } from "@raydium-io/raydium-sdk";
+import { parseTokenAccountResp } from "@gravex-io/gravex-sdk";
 
 const solAccountResp = await connection.getAccountInfo(owner.publicKey);
 const tokenAccountResp = await connection.getTokenAccountsByOwner(owner.publicKey, { programId: TOKEN_PROGRAM_ID });
@@ -65,45 +61,45 @@ const tokenAccountData = parseTokenAccountResp({
 
 ```
 # token
-raydium.token.tokenList
-raydium.token.tokenMap
-raydium.token.mintGroup
+gravex.token.tokenList
+gravex.token.tokenMap
+gravex.token.mintGroup
 
 
 # token account
-raydium.account.tokenAccounts
-raydium.account.tokenAccountRawInfos
+gravex.account.tokenAccounts
+gravex.account.tokenAccountRawInfos
 ```
 
-#### Api methods (https://github.com/raydium-io/raydium-sdk-V2/blob/master/src/api/api.ts)
+#### Api methods (https://github.com/gravex-io/gravex-sdk-V2/blob/master/src/api/api.ts)
 
-- fetch raydium default mint list (mainnet only)
+- fetch gravex default mint list (mainnet only)
 
 ```javascript
-const data = await raydium.api.getTokenList();
+const data = await gravex.api.getTokenList();
 ```
 
-- fetch mints recognizable by raydium
+- fetch mints recognizable by gravex
 
 ```javascript
-const data = await raydium.api.getTokenInfo([
+const data = await gravex.api.getTokenInfo([
   "So11111111111111111111111111111111111111112",
   "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
 ]);
 ```
 
 - fetch pool list (mainnet only)
-  available fetch params defined here: https://github.com/raydium-io/raydium-sdk-V2/blob/master/src/api/type.ts#L249
+  available fetch params defined here: https://github.com/gravex-io/gravex-sdk-V2/blob/master/src/api/type.ts#L249
 
 ```javascript
-const data = await raydium.api.getPoolList({});
+const data = await gravex.api.getPoolList({});
 ```
 
 - fetch poolInfo by id (mainnet only)
 
 ```javascript
 // ids: join pool ids by comma(,)
-const data = await raydium.api.fetchPoolById({
+const data = await gravex.api.fetchPoolById({
   ids: "AVs9TA4nWDzfPJE9gGVNJMVhcQy3V9PGazuz33BfG2RA,8sLbNZoA1cfnvMJLPfp98ZLAnFSYCFApfJKMbiXNLwxj",
 });
 ```
@@ -111,18 +107,11 @@ const data = await raydium.api.fetchPoolById({
 - fetch pool list by mints (mainnet only)
 
 ```javascript
-const data = await raydium.api.fetchPoolByMints({
+const data = await gravex.api.fetchPoolByMints({
   mint1: "So11111111111111111111111111111111111111112",
   mint2: "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R", // optional,
-  // extra params: https://github.com/raydium-io/raydium-sdk-V2/blob/master/src/api/type.ts#L249
+  // extra params: https://github.com/gravex-io/gravex-sdk-V2/blob/master/src/api/type.ts#L249
 });
 ```
 
-- fetch farmInfo by id (mainnet only)
 
-```javascript
-// ids: join farm ids by comma(,)
-const data = await raydium.api.fetchFarmInfoById({
-  ids: "4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW,HUDr9BDaAGqi37xbQHzxCyXvfMCKPTPNF8g9c9bPu1Fu",
-});
-```
