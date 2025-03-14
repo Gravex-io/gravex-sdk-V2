@@ -1,7 +1,7 @@
 # Gravex Gravity Coin SDK
 
-[npm-image]: https://img.shields.io/npm/v/@raydium-io/raydium-sdk-v2.svg?style=flat
-[npm-url]: https://www.npmjs.com/package/@raydium-io/raydium-sdk-v2
+[npm-image]: https://img.shields.io/npm/v/@gravex-io/gravex-sdk-v2.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/@gravex-io/gravex-sdk-v2
 
 [![npm][npm-image]][npm-url]
 
